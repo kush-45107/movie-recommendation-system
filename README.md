@@ -51,5 +51,3 @@ Similarity scores are calculated to identify movies that are most relevant to th
 ## 📈 What I Learned
 This project helped me understand the fundamentals of **recommendation systems**, **feature engineering**, and **text similarity techniques**.  
 I also learned how to integrate machine learning logic with a **Flask web application** to deliver real-time recommendations.
-pip install -r requirements.txt
-python app.py
