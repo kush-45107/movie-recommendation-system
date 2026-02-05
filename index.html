@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bollywood Movie Recommender</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>🎬 About Project</h2>
+    <p>This Bollywood Movie Recommendation System uses Content-Based Filtering to suggest similar movies based on cast, director, genre, and other datas.</p>
+    <h3><span class="icon">🛠</span> Built with:</h3>
+    <ul>
+      <li>Python</li>
+      <li>Flask</li>
+      <li>Content-based Filtering</li>
+      <li>HTML, CSS</li>
+    </ul>
+    <hr>
+    <p class="footer"> <span class="icon">💻</span>Developed by: <strong>Kushagra Srivastava</strong></p>
+  </div>
+
+  <div class="container">
+    <form method="POST" action="/" id="recommendForm">
+      <input type="text" name="movie" placeholder="Enter a Bollywood movie..." required>
+      <button type="submit">Recommend</button>
+    </form>
+
+    {% if recommendations %}
+    <div class="recommendations">
+        <button class="close-btn" onclick="hideRecommendations()">×</button>
+        <h3>Top Recommendations:</h3>
+      
+        {% for rec in recommendations %}
+        <div class="rec-card">
+          <h2 class="movie-title">{{ rec.title }}</h2>
+          <p><span class="label">Actors:</span> {{ rec.actor1 }}, {{ rec.actor2 }}, {{ rec.actor3 }}</p>
+          <p><span class="label">Director:</span> {{ rec.director }}</p>
+          <p><span class="label">Producer:</span> {{ rec.producer }}</p>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+  </div>
+
+  <script>
+    function hideRecommendations() {
+      document.querySelector('.recommendations').style.display = 'none';
+      document.getElementById('recommendForm').reset();
+    }
+  </script>
+  
+  {% if not_found %}
+    <script>
+      alert("No movie found! Please try another movie.");
+    </script>
+  {% endif %}
+  
+  </script>
+</body>
+</html>
